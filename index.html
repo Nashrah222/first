@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Emotion Cards with Quotes</title>
+  <title>Feeling Cards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -11,28 +12,41 @@
     <h1>How are you feeling today?</h1>
 
     <div class="card-grid">
-      <div class="card happy" onclick="showQuote('happy')">
-        <p>Happy</p>
+      <div class="card-wrapper">
+        <div class="card happy" onclick="showQuote('happy')">
+          <p>Happy</p>
+        </div>
+        <div class="quote-box" id="quote-happy"></div>
       </div>
 
-      <div class="card sad" onclick="showQuote('sad')">
-        <p>Sad</p>
+      <div class="card-wrapper">
+        <div class="card sad" onclick="showQuote('sad')">
+          <p>Sad</p>
+        </div>
+        <div class="quote-box" id="quote-sad"></div>
       </div>
 
-      <div class="card angry" onclick="showQuote('angry')">
-        <p>Angry</p>
+      <div class="card-wrapper">
+        <div class="card angry" onclick="showQuote('angry')">
+          <p>Angry</p>
+        </div>
+        <div class="quote-box" id="quote-angry"></div>
       </div>
 
-      <div class="card relaxed" onclick="showQuote('relaxed')">
-        <p>Relaxed</p>
+      <div class="card-wrapper">
+        <div class="card relaxed" onclick="showQuote('relaxed')">
+          <p>Relaxed</p>
+        </div>
+        <div class="quote-box" id="quote-relaxed"></div>
       </div>
 
-      <div class="card anxious" onclick="showQuote('anxious')">
-        <p>Anxious</p>
+      <div class="card-wrapper">
+        <div class="card anxious" onclick="showQuote('anxious')">
+          <p>Anxious</p>
+        </div>
+        <div class="quote-box" id="quote-anxious"></div>
       </div>
     </div>
-
-    <div id="quoteBox" class="quote-box"></div>
   </div>
 
   <script>
@@ -44,12 +58,27 @@
       anxious: "رَبِّ يَسِرُ وَلَا تُعَسِرُ وَتَمِّمْ بِالْخَيْرِ. – Rabbi Yassir Wala TU'Assir Wa Tammim Bil Khair.Oh Allah, Make this Task Easy And Do Not Make It Difficult. OH Allah! Make it End Well"
     };
 
-    function showQuote(feeling) {
-      const quoteText = quotes[feeling];
-      const quoteBox = document.getElementById('quoteBox');
-      quoteBox.innerHTML = `<p>${quoteText}</p>`;
-      quoteBox.classList.add('visible');
+    let lastClicked = null;
+
+  function showQuote(feeling) {
+    const quoteEl = document.getElementById(`quote-${feeling}`);
+
+    if (lastClicked === feeling && quoteEl.classList.contains('visible')) {
+      // Double click = hide
+      quoteEl.classList.remove('visible');
+      quoteEl.innerHTML = "";
+      lastClicked = null;
+    } else {
+      // First click = show new quote
+      document.querySelectorAll('.quote-box').forEach(box => {
+        box.classList.remove('visible');
+        box.innerHTML = "";
+      });
+      quoteEl.innerHTML = `<p>${quotes[feeling]}</p>`;
+      quoteEl.classList.add('visible');
+      lastClicked = feeling;
     }
+  }
   </script>
 </body>
 </html>
