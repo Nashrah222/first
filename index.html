@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Emotion Cards with Quotes</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>How are you feeling today?</h1>
+
+    <div class="card-grid">
+      <div class="card happy" onclick="showQuote('happy')">
+        <p>Happy</p>
+      </div>
+
+      <div class="card sad" onclick="showQuote('sad')">
+        <p>Sad</p>
+      </div>
+
+      <div class="card angry" onclick="showQuote('angry')">
+        <p>Angry</p>
+      </div>
+
+      <div class="card relaxed" onclick="showQuote('relaxed')">
+        <p>Relaxed</p>
+      </div>
+
+      <div class="card anxious" onclick="showQuote('anxious')">
+        <p>Anxious</p>
+      </div>
+    </div>
+
+    <div id="quoteBox" class="quote-box"></div>
+  </div>
+
+  <script>
+    const quotes = {
+      sad: "رَبِّ إِنِّي لِمَا أَنزَلْتَ إِلَيَّ مِنْ خَيْرٍ فَقِيرٌ – Rabbi inni Lima Anzalta ilayya min Khairin faqir.My Lord, Truly, I am in need of whatever good that would send down to me.",
+      happy: "حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ: نِعْمَ الْمَوْلَى وَنِعْمَ النَّصِيرُ – HasbunAllahu wa ni'mal wakeel; Ni'mal maula wani'man naseer. Allah is Sufficient for us, and He is the Best Disposer of affairs. And (He is) the Excellent Protector and the Excellent Helper",
+      angry: "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ، وَالْعَجْزِ وَالْكَسَلِ، وَالْبُخْلِ وَالْجُبْنِ، وَضَلَعِ الدِّيْنِ، وَغَلَبَةِ الرِّجَالِ – Allaahumma 'innee 'a'oodhu bika minal-hammi walhazani, wal'ajzi walkasali, walbukhli waljubni, wa dhala'id-dayni wa ghalabatir-rijaal.O Allah, I seek refuge in you from grief and sadness, from weakness and from laziness, from miserliness and from cowardice, from being overcome by debt and overpowered by men (ie. others).",
+      relaxed: "لا إِلَهَ إِلَّا أَنتَ سُبْحَنَكَ إِنِّي كُنتُ مِنَ الظَّلِمِينَ– La Ilaha Illa Anta Subhanaka Inni Kuntu Minaz Zalimeen.There are none worthy of worship besides You. Glorified are You. Surely I am from the wrongdoers",
+      anxious: "رَبِّ يَسِرُ وَلَا تُعَسِرُ وَتَمِّمْ بِالْخَيْرِ. – Rabbi Yassir Wala TU'Assir Wa Tammim Bil Khair.Oh Allah, Make this Task Easy And Do Not Make It Difficult. OH Allah! Make it End Well"
+    };
+
+    function showQuote(feeling) {
+      const quoteText = quotes[feeling];
+      const quoteBox = document.getElementById('quoteBox');
+      quoteBox.innerHTML = `<p>${quoteText}</p>`;
+      quoteBox.classList.add('visible');
+    }
+  </script>
+</body>
+</html>
